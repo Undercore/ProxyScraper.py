@@ -3,91 +3,9 @@ print'Developed by 'Undercore'
 print'version 1.0'
 print'[%]scraping started'
 import urllib
+import re
 from time import gmtime, strftime, sleep
 
-#Functions,
-def isnum(ch):
-	if ch == "0":
-		return True
-	if ch == "1":
-		return True
-	if ch == "2":
-		return True
-	if ch == "3":
-		return True
-	if ch == "4":
-		return True
-	if ch == "5":
-		return True
-	if ch == "6":
-		return True
-	if ch == "7":
-		return True
-	if ch == "8":
-		return True
-	if ch == "9":
-		return True
-	return False
-	
-def alfabetcheck(line):
-	sw = False
-	if "a" in line:
-		sw = True
-	if "b" in line:
-		sw = True
-	if "c" in line:
-		sw = True
-	if "d" in line:
-		sw = True
-	if "e" in line:
-		sw = True
-	if "f" in line:
-		sw = True
-	if "g" in line:
-		sw = True
-	if "h" in line:
-		sw = True
-	if "i" in line:
-		sw = True
-	if "j" in line:
-		sw = True
-	if "k" in line:
-		sw = True
-	if "l" in line:
-		sw = True
-	if "m" in line:
-		sw = True
-	if "n" in line:
-		sw = True
-	if "o" in line:
-		sw = True
-	if "p" in line:
-		sw = True
-	if "q" in line:
-		sw = True
-	if "r" in line:
-		sw = True
-	if "s" in line:
-		sw = True
-	if "t" in line:
-		sw = True
-	if "u" in line:
-		sw = True
-	if "v" in line:
-		sw = True
-	if "w" in line:
-		sw = True
-	if "x" in line:
-		sw = True
-	if "y" in line:
-		sw = True
-	if "z" in line:
-		sw = True
-	if sw == True:
-		return False
-	else:
-		return True
-		
 def writetofile(lines):
 	for line in lines:
 		wfile.write(line + "\n")
@@ -111,14 +29,14 @@ def process	(source):
 		z += 1
 			
 	for line in templist:
-		if alfabetcheck(line):
+		if re.compile('[a-z]').search(line) is not None:
 			proxys.append(line)
 			
 	x = 0
 	for line in proxys:
 		temp = ""
 		for itm in line:
-			if isnum(itm) or itm == "." or itm == ":":
+			if re.compile('[0-9.:]').match(itm) is not None:
 				temp += itm
 				proxys[x] = temp
 		x += 1
