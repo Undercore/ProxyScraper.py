@@ -29,7 +29,7 @@ def process	(source):
 		z += 1
 			
 	for line in templist:
-		if re.compile('a-z').match(line) is not None:
+		if re.compile('[a-z]').search(line) is not None:
 			proxys.append(line)
 			
 	x = 0
